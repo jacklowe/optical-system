@@ -7,7 +7,7 @@ import numpy as np
 
 import raytracer as rt
 
-# from scipy.optimize import fmin
+from scipy.optimize import fmin
 
 
 class OpSystem:
@@ -107,16 +107,15 @@ class OpSystem:
         plt.plot(t_i3x, t_i3y, 'go')
         plt.show()
 
-# def optimise_curvatures(self, c=None):
-#     """
-#     Optimise the curvature of the surfaces of the lens by minimising
-#     the rms spread at the output plane.  Note that our initial guess x0
-#     for curvature of front and back of lensis taken as the argument for
-#     rms function 'c' which is the curvature initial guess
-#     """
-#     if c is not None:
-#         self.c1 = c[0]
-#         self.c2 = c[1]
-#     a = fmin(self.rms, x0=[self.c1, self.c2])
-#     print("Optimised curvature combination is", a, "from initial guess",
-#           [self.c1, self.c2])
+    def optimise_curvatures(self, c=None):
+        """
+        Optimise the curvature of the surfaces of the lens by minimising
+        the rms spread at the output plane.  Note that our initial guess x0
+        for curvature of front and back of lensis taken as the argument for
+        rms function 'c' which is the curvature initial guess
+        """
+        if c is not None:
+            self.c1 = c[0]
+            self.c2 = c[1]
+        a = fmin(self.rms, x0=[self.c1, self.c2])
+        print("Optimised curvature combination is", a, "from initial guess", [self.c1, self.c2])
